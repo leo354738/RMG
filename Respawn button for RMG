@@ -1,1 +1,36 @@
 --Respawn button for rmg i made a long time ago, don't know if it works
+--Variables
+local RS = game:GetService("ReplicatedStorage")
+local Event = RS.Respawn
+local CG = game:GetService("CoreGui")
+local IS = game:GetService("UserInputService")
+local Player = game.Players.LocalPlayer
+local Useless = Player.PlayerGui.deathgui
+local Useless2 = game.StarterGui.deathgui
+
+--GUI
+local Gui = Instance.new("ScreenGui", CG)
+Useless:Destroy()
+Useless2:Destroy()
+Gui.ResetOnSpawn = false
+Gui.Name = "made by leo354738"
+local button = Instance.new("TextButton", Gui)
+button.Text = "Respawn"
+button.Position = UDim2.new(0, 0, 0.5, 0)
+button.Size = UDim2.new(0, 100, 0, 100)
+
+--Function
+button.MouseButton1Click:Connect(function()
+	local CurPos = Player.Character.HumanoidRootPart.CFrame
+	Player.Character:ClearAllChildren()
+	Event:FireServer()
+	Player.CharacterAdded:Wait()
+	Player.Character:WaitForChild("HumanoidRootPart").CFrame = CurPos
+end)
+
+--Shortcut
+IS.InputBegan:Connect(function(Input)
+	if Input.KeyCode == Enum.KeyCode.T then
+		button.Visible = not button.Visible
+	end
+end)
