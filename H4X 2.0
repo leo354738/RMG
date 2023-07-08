@@ -1788,6 +1788,14 @@ RegisterCommand("stomp",function(Plr)
     end
 end)
 
+RegisterCommand("spamall",function()
+    Toggles["spamall"] = not Toggles["spamall"]
+end)
+
+RegisterCommand("spamdistraction",function()
+    Toggles["spamdist"] = not Toggles["spamdist"]
+end, {spamdist})
+
 local function NewPlayerAdded(Plr)
 	if table.find(Blacklist, Plr.Name) then
 		StarterGui:SetCore("ChatMakeSystemMessage", {
