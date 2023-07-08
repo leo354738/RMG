@@ -1,5 +1,5 @@
 --Game: Rememed meme game (https://www.roblox.com/games/6031035699/rememed-meme-game)
---This is my custom version of the RMG H4X by LeoH4ker! (Original: https://raw.githubusercontent.com/DanGtDavis/Roblox/main/H4x.lua)
+--This is my custom version of the RMG H4X by LegoH4ker! (Original: https://raw.githubusercontent.com/DanGtDavis/Roblox/main/H4x.lua)
 --This version just adds a few new commands, might update it sometimes
 --Command list is below
 
@@ -10,6 +10,8 @@ spamlaugh: Spams the laugh emote without a cooldown, can be toggled
 eatgrenade: Buys a grenade and instantly eats it
 breakvan: Breaks the van so nobody can use it to hide in the bloodmoon
 stomp: Stomps a smurfed player instantly and teleports you back to your original location, but it won't work if they are in a specific place such as under a table
+spamdist: Spams the distraction taunt without a cooldown, can be toggled
+spamall: Spams all taunts without a cooldown, can be toggled
 --]]
 
 if game.PlaceId ~= 6031035699 then return end
@@ -104,7 +106,9 @@ do
 		["AntiFeClaim"] = false,
 		["Range"] = 60,
 		["anticrash"] = false,
-		["spamlaugh"] = false
+		["spamlaugh"] = false,
+                ["spamall"] = false,
+                ["spamdist"] = false
 	}
 
 
@@ -1051,6 +1055,35 @@ task.spawn(function()
           end
        end
     end)
+end
+
+do --spam distraction dance
+task.spawn(function()
+   while task.wait() do
+      if Toggles["spamdist"] then
+         while Toggles["spamdist"] do
+            wait(0.00001)
+            StartTauntEvent:FireServer(4)
+         end
+      end
+   end
+end)
+end
+
+do --spam all taunts
+task.spawn(function()
+   while task.wait() do
+      if Toggles["spamall"] then
+         while Toggles["spamall"] do
+            wait(0.00001)
+            StartTauntEvent:FireServer(2)
+            StartTauntEvent:FireServer(4)
+            StartTauntEvent:FireServer(1)
+            StartTauntEvent:FireServer(5)
+         end
+      end
+   end
+end)
 end
 
 local CommandList;
