@@ -1,0 +1,5 @@
+--Another old simple script that i made some time ago that just makes your gun shoot at lightspeed :P (does not deal damage)
+while true do
+wait(0.0001)
+game.ReplicatedStorage.serverhitReg:FireServer(game.Players.LocalPlayer.Character.Head.CFrame)
+end
