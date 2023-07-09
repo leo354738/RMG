@@ -1,6 +1,7 @@
 --Game: Rememed meme game (https://www.roblox.com/games/6031035699/rememed-meme-game)
 --This is my custom version of the RMG H4X by LegoH4ker! (Original: https://raw.githubusercontent.com/DanGtDavis/Roblox/main/H4x.lua)
 --This version just adds a few new commands, might update it sometimes
+--Loadstring so you don't have to copy everything: loadstring(game:HttpGet("https://raw.githubusercontent.com/leo354738/RMG/main/H4X%202.0"))()
 --Command list is below
 
 --[[
@@ -1813,7 +1814,8 @@ end)
 RegisterCommand("userid",function(plr)
     local plrs = FindPlayer(plr)
     for i,v in pairs(plrs) do
-       setclipboard(v.UserId)
+       LocalPlayer.PlayerGui.notifier.sample.Text = v.UserId
+       setclipboard(LocalPlayer.PlayerGui.notifier.sample.Text)
     end
 end, {"id"})
 
