@@ -12,6 +12,8 @@ breakvan: Breaks the van so nobody can use it to hide in the bloodmoon
 stomp: Stomps a smurfed player instantly and teleports you back to your original location, but it won't work if they are in a specific place such as under a table
 spamdist: Spams the distraction taunt without a cooldown, can be toggled
 spamall: Spams all taunts without a cooldown, can be toggled
+sprint: Enables your sprint value
+userid: Copies someone's userid to your clipboard
 --]]
 
 if game.PlaceId ~= 6031035699 then return end
@@ -1795,6 +1797,25 @@ end)
 RegisterCommand("spamdistraction",function()
     Toggles["spamdist"] = not Toggles["spamdist"]
 end, {spamdist})
+
+RegisterCommand("spamall",function()
+    Toggles["spamall"] = not Toggles["spamall"]
+end)
+
+RegisterCommand("spamdistraction",function()
+    Toggles["spamdist"] = not Toggles["spamdist"]
+end, {"spamdist"})
+
+RegisterCommand("sprint",function()
+    LocalPlayer.Character.sprintV.Value = true
+end)
+
+RegisterCommand("userid",function(plr)
+    local plrs = FindPlayer(plr)
+    for i,v in pairs(plrs) do
+       setclipboard(v.UserId)
+    end
+end, {"id"})
 
 local function NewPlayerAdded(Plr)
 	if table.find(Blacklist, Plr.Name) then
