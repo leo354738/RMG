@@ -15,6 +15,10 @@ spamdist: Spams the distraction taunt without a cooldown, can be toggled
 spamall: Spams all taunts without a cooldown, can be toggled
 sprint: Enables your sprint value
 userid: Copies someone's userid to your clipboard
+tptoplace: Teleports you to a place in the map (brazil, smurfroom, doorstuck, cave, shaggyshed, sewer)
+godfixed: The most interesting one i've created, you need a smurf cola in your inventory for it work, then throw a grenade to
+unfreeze yourself, and to stop people from stomping you, you need someone to catch you and for that person to reset while they have you
+in a jar, it's recommended they reset with :re
 --]]
 
 if game.PlaceId ~= 6031035699 then return end
@@ -56,6 +60,13 @@ local ServerHitReg = ReplicatedStorage.serverhitReg
 local _GetPropertyChangedSignal = game.GetPropertyChangedSignal
 local _FindFirstChild = game.FindFirstChild
 local _WorldToScreenPoint = Workspace.CurrentCamera.WorldToScreenPoint
+
+local Brazil = Workspace.vantp.CFrame
+local Sewer = Workspace.sewer.undergroundShop["Meshes/bottle"].CFrame
+local ShaggyShed = Workspace["random goods"].soundregister.soundpart.CFrame
+local SmurfRoom = Workspace.smurfRoom.tv22.CFrame
+local DoorStuck = Workspace.doorstuck.start.CFrame
+local Cave = Workspace.cave.fart.CFrame
 
 Workspace.FallenPartsDestroyHeight = 0/0
 LocalPlayer.CameraMaxZoomDistance = 9999
@@ -1818,6 +1829,37 @@ RegisterCommand("userid",function(plr)
        setclipboard(LocalPlayer.PlayerGui.notifier.sample.Text)
     end
 end, {"id"})
+
+RegisterCommand("godfixed",function()
+    if LocalPlayer.Backpack:FindFirstChild("smurf cola") then
+       local Cola = LocalPlayer.Backpack:FindFirstChild("smurf cola")
+       local Bonk = BuyTool("Bonk! Atomic punch!")
+       Bonk.Parent = LocalPlayer.Character
+       Bonk:Activate()
+       Bonk.Parent = LocalPlayer.Backpack
+       Cola.Parent = LocalPlayer.Character
+       Cola:Activate()
+       wait(4)
+       BuyTool("grenade")
+       LocalPlayer.Character.sprintV.Value = true
+    end
+end, {"god4"})
+
+RegisterCommand("tptoplace",function(Place)
+    if Place == "brazil" then
+    LocalPlayer.Character.HumanoidRootPart.CFrame = Brazil
+   elseif Place == "doorstuck" then
+   LocalPlayer.Character.HumanoidRootPart.CFrame = DoorStuck
+   elseif Place == "sewer" then
+   LocalPlayer.Character.HumanoidRootPart.CFrame = Sewer
+   elseif Place == "shaggyshed" then
+   LocalPlayer.Character.HumanoidRootPart.CFrame = ShaggyShed
+   elseif Place == "cave" then
+   LocalPlayer.Character.HumanoidRootPart.CFrame = Cave
+   elseif Place == "smurfroom" then
+   LocalPlayer.Character.HumanoidRootPart.CFrame = SmurfRoom
+   end
+end, {"tpp"})
 
 local function NewPlayerAdded(Plr)
 	if table.find(Blacklist, Plr.Name) then
