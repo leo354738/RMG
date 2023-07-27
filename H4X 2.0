@@ -1842,8 +1842,10 @@ RegisterCommand("godfixed",function()
        wait(4)
        BuyTool("grenade")
        LocalPlayer.Character.sprintV.Value = true
+       LocalPlayer.Character.smurf:Destroy()
+       StarterGui.ammo:Clone().Parent = LocalPlayer.PlayerGui
     end
-end, {"god4"})
+end, {"god4","bypassedgod"})
 
 RegisterCommand("tptoplace",function(Place)
     if Place == "brazil" then
@@ -1859,7 +1861,7 @@ RegisterCommand("tptoplace",function(Place)
    elseif Place == "smurfroom" then
    LocalPlayer.Character.HumanoidRootPart.CFrame = SmurfRoom
    end
-end, {"tpp"})
+end, {"tpp","to"})
 
 local function NewPlayerAdded(Plr)
 	if table.find(Blacklist, Plr.Name) then
